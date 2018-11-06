@@ -50,7 +50,7 @@
             " document.close(); " +
             " } }" +
             "</scr_ipt>" +
-            "<scr_ipt onreadystatechange='mapReadyStateChange(this.readyState);' onload='mapReadyStateChange(\"loaded\");' src=\"http://api.map.baidu.com/api?v=2.0&ak=6b6c1a67eaa7db1ca6d6da28e590e343&services=true\"></scr_ipt>" +
+            "<scr_ipt onreadystatechange='mapReadyStateChange(this.readyState);' onload='mapReadyStateChange(\"loaded\");' src=\"http://api.map.baidu.com/api?v=3.0&ak=6b6c1a67eaa7db1ca6d6da28e590e343&services=true\"></scr_ipt>" +
             "</body>" +
             "</html>" +
             "</script>",
@@ -184,7 +184,8 @@
                             me.map.centerAndZoom(points[0], 13);
                         }
                         point = me.map.getCenter();
-                        me.marker.setPoint(point);
+                        me.marker = new BMap.Marker(point);
+                        me.map.addOverlay(me.marker);
                     } else {
                         alert(me.lang.errorMsg);
                     }
@@ -231,7 +232,7 @@
                         center = widget.map.getCenter(),
                         zoom = widget.map.getZoom(),
                         size = widget.map.getSize(),
-                        point = widget.marker.P;
+                        point = widget.marker.point;
 
                     if (widget.root().find(".edui-map-dynamic")[0].checked) {
                         var URL = editor.getOpt('UMEDITOR_HOME_URL'),
